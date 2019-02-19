@@ -1,0 +1,18 @@
+{
+    "LoadBalancerArn": "arn:aws:elasticloadbalancing:{region}:{accountId}:loadbalancer/app/{aplicationName}-{enviorment}/{uniuqe id}",
+    "DNSName": "{aplicationName}-{enviorment}-{accountId}.{region}.elb.amazonaws.com",
+    "LoadBalancerName": "{aplicationName}-{enviorment}",
+    "Scheme": "internet-facing",
+    "VpcId": "{VpcId}",
+    "Type": "application",
+    "AvailabilityZones": [
+        {
+            "ZoneName": "{ZoneName}",
+            "SubnetId": "{SubnetId}"
+        }
+    ],
+    "SecurityGroups": [
+        "{SecurityGroups}"
+    ],
+    "IpAddressType": "ipv4"
+}

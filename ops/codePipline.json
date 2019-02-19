@@ -1,0 +1,87 @@
+{
+    "pipeline": {
+        "name": "{systemName}-{enviorment}",
+        "roleArn": "arn:aws:iam::{accountId}:role/service-role/AWSCodePipelineServiceRole-{region}-{systemName}-{enviorment}",
+        "artifactStore": {
+            "type": "S3",
+            "location": "{systemName}-artifacts"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "CodeCommit",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "BranchName": "{brunchName}",
+                            "PollForSourceChanges": "false",
+                            "RepositoryName": "{repoName}"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "comittedrepo"
+                            }
+                        ],
+                        "inputArtifacts": []
+                    }
+                ]
+            },
+            {
+                "name": "Build",
+                "actions": [
+                    {
+                        "name": "Build",
+                        "actionTypeId": {
+                            "category": "Build",
+                            "owner": "AWS",
+                            "provider": "CodeBuild",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ProjectName": "{codeBuildProjectName}"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "comittedrepo"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Deploy",
+                "actions": [
+                    {
+                        "name": "ecs-update",
+                        "actionTypeId": {
+                            "category": "Invoke",
+                            "owner": "AWS",
+                            "provider": "Lambda",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "FunctionName": "updateECSImage",
+                            "UserParameters": "{\"cluster\": \"{ecsClusterName}\", \"service\": \"{ecsServiceName}\"}"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": []
+                    }
+                ]
+            }
+        ],
+        "version": 4
+    },
+    "metadata": {
+        "pipelineArn": "arn:aws:codepipeline:{region}:{accountId}:{systemName}-{enviorment}"
+    }
+}

@@ -1,0 +1,167 @@
+{
+  "executionRoleArn": "arn:aws:iam::${accountId}:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "X",
+          "awslogs-region": "X",
+          "awslogs-stream-prefix": "X"
+        }
+      },
+      "portMappings": [
+        {
+          "hostPort": 9000,
+          "protocol": "tcp",
+          "containerPort": 9000
+        }
+      ],
+      "cpu": 0,
+      "environment": [
+        {
+          "name": "ACF_PRO_KEY",
+          "value": "X"
+        },
+        {
+          "name": "AUTH_KEY",
+          "value": "X"
+        },
+        {
+          "name": "AUTH_SALT",
+          "value": "X"
+        },
+        {
+          "name": "DBI_AWS_ACCESS_KEY_ID",
+          "value": "X"
+        },
+        {
+          "name": "DBI_AWS_SECRET_ACCESS_KEY",
+          "value": "X"
+        },
+        {
+          "name": "LOGGED_IN_KEY",
+          "value": "X"
+        },
+        {
+          "name": "LOGGED_IN_SALT",
+          "value": "X"
+        },
+        {
+          "name": "NONCE_KEY",
+          "value": "X"
+        },
+        {
+          "name": "NONCE_SALT",
+          "value": "X"
+        },
+        {
+          "name": "RDS_DB_NAME",
+          "value": "X"
+        },
+        {
+          "name": "RDS_HOSTNAME",
+          "value": "X"
+        },
+        {
+          "name": "RDS_PASSWORD",
+          "value": "X"
+        },
+        {
+          "name": "RDS_PORT",
+          "value": "3306"
+        },
+        {
+          "name": "RDS_USERNAME",
+          "value": "X"
+        },
+        {
+          "name": "SECURE_AUTH_KEY",
+          "value": "X"
+        },
+        {
+          "name": "SECURE_AUTH_SALT",
+          "value": "X"
+        },
+        {
+          "name": "WP_ENV",
+          "value": "X"
+        },
+        {
+          "name": "WP_HOME",
+          "value": "X"
+        },
+        {
+          "name": "WP_SITEURL",
+          "value": "X"
+        }
+      ],
+      "memory": 1024,
+      "image": "{php-fpm image path}",
+      "disableNetworking": false,
+      "essential": true,
+      "name": "php-app"
+    },
+    {
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "X",
+          "awslogs-region": "X",
+          "awslogs-stream-prefix": "X"
+        }
+      },
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "cpu": 0,
+      "memory": 256,
+      "image": "{nginx image path}",
+      "essential": true,
+      "name": "nginx-proxy"
+    }
+  ],
+  "memory": "2048",
+  "compatibilities": [
+    "FARGATE"
+  ],
+  "taskDefinitionArn": "X",
+  "family": "X",
+  "requiresAttributes": [
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "1024",
+  "revision": 1,
+  "volumes": []
+}

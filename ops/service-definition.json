@@ -1,0 +1,46 @@
+{
+  "services": [
+      {
+          "serviceArn": "X",
+          "serviceName": "X",
+          "clusterArn": "X",
+          "loadBalancers": [
+              {
+                  "targetGroupArn": "X",
+                  "containerName": "nginx-proxy",
+                  "containerPort": 80
+              }
+          ],
+          "serviceRegistries": [],
+          "desiredCount": 1,
+          "launchType": "FARGATE",
+          "platformVersion": "LATEST",
+          "taskDefinition": "X",
+          "deploymentConfiguration": {
+              "maximumPercent": 200,
+              "minimumHealthyPercent": 100
+          },
+          "roleArn": "X",
+          "placementConstraints": [],
+          "placementStrategy": [],
+          "networkConfiguration": {
+              "awsvpcConfiguration": {
+                  "subnets": [
+                      "X",
+                      "X",
+                      "X"
+                  ],
+                  "securityGroups": [
+                      "X"
+                  ],
+                  "assignPublicIp": "ENABLED"
+              }
+          },
+          "healthCheckGracePeriodSeconds": 5,
+          "schedulingStrategy": "REPLICA",
+          "enableECSManagedTags": true,
+          "propagateTags": "NONE"
+      }
+  ],
+  "failures": []
+}

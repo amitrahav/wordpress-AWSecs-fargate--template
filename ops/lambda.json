@@ -1,0 +1,22 @@
+{
+    "Configuration": {
+        "FunctionName": "updateECSImage",
+        "FunctionArn": "arn:aws:lambda:{region}:{accountId}:function:updateECSImage",
+        "Runtime": "python2.7",
+        "Role": "arn:aws:iam::{accountId}:role/updateECSImage-service-role",
+        "Handler": "index.handler",
+        "CodeSize": 1125,
+        "Description": "",
+        "Timeout": 3,
+        "MemorySize": 128,
+        "Version": "$LATEST",
+        "VpcConfig": {
+            "SubnetIds": [],
+            "SecurityGroupIds": [],
+            "VpcId": ""
+        },
+        "TracingConfig": {
+            "Mode": "PassThrough"
+        }
+    }
+}
